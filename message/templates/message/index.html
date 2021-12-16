@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+
+<script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+
+</head>
+
+<body>
+<h1 style="text-align: center; margin-top: 200px;">you registered!</h1>
+<script>
+
+  const beamsClient = new PusherPushNotifications.Client({
+  instanceId: "32876e2b-5337-41b3-a3fe-70be471f5e5c",
+});
+beamsClient
+  .start()
+  .then((beamsClient) => beamsClient.getDeviceId())
+  .then((deviceId) =>
+    console.log("Successfully registered with Beams. Device ID:", deviceId)
+  )
+  .then(() => beamsClient.addDeviceInterest("hello"))
+  .then(() => beamsClient.getDeviceInterests())
+  .then((interests) => console.log("Current interests:", interests))
+  .catch(console.error);
+</script>
+</body>
+</html>
